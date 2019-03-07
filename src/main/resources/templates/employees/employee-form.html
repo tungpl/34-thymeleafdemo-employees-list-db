@@ -13,43 +13,32 @@
 
 
 
-		<title>Employee Directory</title>
+		<title>Save Employee</title>
 
 	</head>
 
 	<body>
 		<div class="container">
+
 			<h3>Employee Directory</h3>
 			<hr>
 
-			<!-- Add a button -->
-			<a th:href="@{/employees/showFormForAdd}" class="btn btn-primary btn-sm mb-3">
-				Add employee
-			</a>
+			<p class="h4 mb-4">Save Employee</p>
 
-			<table class="table table-bordered table-striped">
+			<form action="#" th:action="@{/employees/save}" th:object="${employee}" method="POST">
 
-				<thead class="thead-dark">
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Email</th>
-				</tr>
+				<!-- Add hidden form field to handle update -->
+				<input type="hidden" th:field="*{id}"/>
 
-				</thead>
+				<input type="text" th:field="*{firstName}" class="form-control mb-4 col-4" placeholder="First Name" />
+				<input type="text" th:field="*{lastName}" class="form-control mb-4 col-4" placeholder="Last Name" />
+				<input type="text" th:field="*{email}" class="form-control mb-4 col-4" placeholder="Email" />
 
-				<tbody>
-				<tr th:each="tempEmployee : ${employees}">
+				<button type="submit" class="btn btn-info col-2">Save</button>
 
-					<td th:text="${tempEmployee.firstName}" />
-					<td th:text="${tempEmployee.lastName}" />
-					<td th:text="${tempEmployee.email}" />
+			</form>
 
-				</tr>
-
-				</tbody>
-			</table>
-
+			<a th:href="@{/employees/list}">Back to Employees list</a>
 		</div>
 
 	</body>
